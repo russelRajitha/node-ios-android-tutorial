@@ -1,8 +1,9 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const { UniqueConstraintError } = require('sequelize');
 const { sendSuccess, sendServerError, sendValidationErrors, sendAuthError } = require('../helpers/response');
 const { validate } = require('../helpers/validate');
-const { User } = require('../models');
+const { User, RefreshToken } = require('../models');
 
 const login = async (req, res) => {
     try {
@@ -29,10 +30,12 @@ const login = async (req, res) => {
             return sendAuthError({ res, message: 'Invalid email or password' });
         }
 
-        const token = user.generateAuthToken();
+        const accessToken = user.generateAccessToken();
+        const refreshToken = await user.issueRefreshToken();
+
         return sendSuccess({
             res,
-            data: { accessToken: token },
+            data: { accessToken, refreshToken },
             message: 'Login successful',
         });
     } catch (e) {
@@ -71,10 +74,12 @@ const signUp = async (req, res) => {
             password: hashedPassword,
         });
 
-        const token = user.generateAuthToken();
+        const accessToken = user.generateAccessToken();
+        const refreshToken = await user.issueRefreshToken(user);
+
         return sendSuccess({
             res,
-            data: { accessToken: token },
+            data: { accessToken, refreshToken },
             message: 'Account created successfully',
         });
     } catch (e) {
@@ -85,4 +90,62 @@ const signUp = async (req, res) => {
     }
 };
 
-module.exports = { login, signUp };
+const refresh = async (req, res) => {
+    const { refreshToken } = req.body;
+    if (!refreshToken) {
+        return sendAuthError({ res, message: 'Refresh token required' });
+    }
+
+    try {
+        const payload = jwt.verify(
+            refreshToken,
+            process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET
+        );
+
+        const record = await RefreshToken.findOne({
+            where: { jti: payload.jti, revokedAt: null },
+        });
+
+        if (!record || !record.isValid()) {
+            return sendAuthError({ res, message: 'Invalid or expired refresh token' });
+        }
+
+        await record.increment('useCount');
+
+        const user = await User.findByPk(payload.id);
+        if (!user) return sendAuthError({ res, message: 'User not found' });
+
+        const newAccessToken = user.generateAccessToken();
+
+        return sendSuccess({
+            res,
+            data: { accessToken: newAccessToken },
+            message: 'Token refreshed successfully',
+        });
+    } catch (e) {
+        return sendAuthError({ res, message: 'Invalid or expired refresh token' });
+    }
+};
+
+const logout = async (req, res) => {
+    const { refreshToken } = req.body;
+
+    if (refreshToken) {
+        try {
+            const payload = jwt.verify(
+                refreshToken,
+                process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET
+            );
+            await RefreshToken.update(
+                { revokedAt: new Date() },
+                { where: { jti: payload.jti } }
+            );
+        } catch {
+            // Best-effort revocation — ignore invalid / already-expired tokens
+        }
+    }
+
+    return sendSuccess({ res, data: null, message: 'Logged out successfully' });
+};
+
+module.exports = { login, signUp, refresh, logout };

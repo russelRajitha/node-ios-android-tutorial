@@ -10,7 +10,10 @@
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
     "db:migrate:undo:all": "npx sequelize-cli db:migrate:undo:all",
-    "db:seed:default-user": "npx sequelize-cli db:seed --seed 20260317000000-default-user.js"
+    "db:seed:default-user": "npx sequelize-cli db:seed --seed 20260317000000-default-user.js",
+    "db:seed:default-product-categories": "npx sequelize-cli db:seed --seed 20250607210828-product-categories.js",
+    "db:seed:default-products": "npx sequelize-cli db:seed --seed 20250607212630-products.js",
+    "db:seed:default-product-images": "npx sequelize-cli db:seed --seed 20250607212643-product-images.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

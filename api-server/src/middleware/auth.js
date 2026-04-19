@@ -9,7 +9,7 @@ const authMiddleware = (req, res, next) => {
 
     const token = authHeader.split(' ')[1];
     try {
-        req.user = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = jwt.verify(token, process.env.JWT_ACCESS_SECRET || process.env.JWT_SECRET);
         next();
     } catch (e) {
         return sendAuthError({ res, message: 'Unauthorized Request' });

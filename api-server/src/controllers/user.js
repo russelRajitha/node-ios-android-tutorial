@@ -1,4 +1,4 @@
-const { sendSuccess, sendServerError } = require('../helpers/response');
+const { sendSuccess, sendServerError} = require('../helpers/response');
 const { User } = require('../models');
 
 const profile = async (req, res) => {

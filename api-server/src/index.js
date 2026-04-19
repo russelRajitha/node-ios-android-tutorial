@@ -7,6 +7,7 @@ const http = require("http");
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 moment.tz.setDefault(timezone);
 
 
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/cart', cartRoutes);
 
 const server = http.createServer(app);
 server.listen(port, () => {

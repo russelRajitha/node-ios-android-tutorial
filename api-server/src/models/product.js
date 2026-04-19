@@ -5,15 +5,9 @@ require('dotenv').config();
 module.exports = (sequelize) => {
     class Product extends Model {
         static associate(models) {
-            // Define associations here if needed, e.g.,
-            Product.hasMany(models.ProductImage, {
-                foreignKey: 'product_id',
-                as: 'images'
-            });
-            Product.belongsTo(models.ProductCategory, {
-                foreignKey: 'category_id',
-                as: 'category'
-            });
+            Product.hasMany(models.ProductImage, { foreignKey: 'product_id', as: 'images' });
+            Product.belongsTo(models.ProductCategory, { foreignKey: 'category_id', as: 'category' });
+            Product.hasMany(models.Cart, { foreignKey: 'productId', as: 'cartItems' });
         }
     }
 
