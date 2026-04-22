@@ -215,10 +215,10 @@ src/
 This project is built step by step in the blog series:
 
 - **Part 1** — Initiating the Project
-- **Part 2** — Connecting the Database *(coming soon)*
-- **Part 3** — Models, Associations & Seeders *(coming soon)*
-- **Part 4** — Response Helpers & Validation *(coming soon)*
-- **Part 5** — Authentication (Sign-up, Login, JWT) *(coming soon)*
-- **Part 6** — Auth Middleware & Protected Routes *(coming soon)*
+- **Part 2** — Connecting the Database
+- **Part 3** — Models, Associations & Seeders
+- **Part 4** — Response Helpers & Validation
+- **Part 5** — Authentication (Sign-up, Login, JWT)
+- **Part 6** — Auth Middleware & Protected Routes
 - **Part 7** — Products API with Pagination *(coming soon)*
 - **Part 8** — Environment, Deployment & Production Hardening *(coming soon)*
