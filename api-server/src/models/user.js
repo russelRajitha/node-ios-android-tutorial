@@ -17,6 +17,9 @@ module.exports = (sequelize) => {
         static associate(models) {
             User.hasMany(models.RefreshToken, { foreignKey: 'userId', as: 'refreshTokens' });
             User.hasMany(models.Cart, { foreignKey: 'userId', as: 'cartItems' });
+            User.hasMany(models.Order, { foreignKey: 'userId', as: 'orders' });
+            User.hasMany(models.Notification, { foreignKey: 'userId', as: 'notifications' });
+            User.hasMany(models.DeviceToken, { foreignKey: 'userId', as: 'deviceTokens' });
         }
         async issueRefreshToken () {
             const jti = uuidv4();

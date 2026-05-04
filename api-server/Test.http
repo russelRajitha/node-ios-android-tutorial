@@ -32,7 +32,7 @@ GET http://localhost:4000/api/user/profile
 
 ### Cart - Get Cart Items
 GET http://localhost:4000/api/cart
-Authorization: Bearer <access_token>
+Authorization: Bearer {{accessToken}}
 
 ### Cart - Add Item to Cart
 POST http://localhost:4000/api/cart/add
@@ -57,4 +57,40 @@ Authorization: Bearer <access_token>
 DELETE http://localhost:4000/api/cart/90247913-d2f8-4175-ab77-3ea1bdf35750
 Authorization: Bearer <access_token>
 
+###
+
+### Categories
+GET http://localhost:4000/api/product-categories/all
+###
+
+### Category-Products
+GET http://localhost:4000/api/product-categories/6999b49f-6636-44f8-9102-196eccddb2e5
+###
+
+### Category-Products
+GET http://localhost:4000/api/products/6d1d6266-4088-4370-93a4-cec3de0f0dfb
+###
+POST http://localhost:4000/api/admin/orders/4eb35293-6051-402f-acfe-712e98643405/deliver
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+###
+
+### Device Tokens - Register
+POST http://localhost:4000/api/device-tokens
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "token": "fcm-or-apns-device-token-here",
+  "platform": "android"
+}
+
+### Device Tokens - Unregister (on logout)
+DELETE http://localhost:4000/api/device-tokens
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "token": "fcm-or-apns-device-token-here"
+}
 ###
