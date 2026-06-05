@@ -112,3 +112,18 @@ struct LoginSheet: View {
         }
     }
 }
+
+// MARK: - Preview
+
+#Preview("LoginSheet") {
+    LoginSheet(isPresented: .constant(true))
+}
+
+#Preview("LoginSheet – Dark") {
+    LoginSheet(isPresented: .constant(true))
+        .preferredColorScheme(.dark)
+}
+
+#Preview("LoginSheet – Cannot Dismiss") {
+    LoginSheet(isPresented: .constant(true), canDismiss: false)
+}
