@@ -46,3 +46,22 @@ struct ConfigurationsScreen: View {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "—"
     }
 }
+
+// MARK: - Preview
+
+#Preview("ConfigurationsScreen") {
+    NavigationStack {
+        ConfigurationsScreen()
+    }
+    .environmentObject(ThemeManager())
+    .applyAppColors()
+}
+
+#Preview("ConfigurationsScreen – Dark") {
+    NavigationStack {
+        ConfigurationsScreen()
+    }
+    .environmentObject(ThemeManager())
+    .applyAppColors()
+    .preferredColorScheme(.dark)
+}

@@ -97,3 +97,22 @@ struct HomeScreen: View {
         .padding()
     }
 }
+
+// MARK: - Preview
+
+#Preview("HomeScreen") {
+    NavigationStack {
+        HomeScreen()
+    }
+    .environmentObject(ThemeManager())
+    .applyAppColors()
+}
+
+#Preview("HomeScreen – Dark") {
+    NavigationStack {
+        HomeScreen()
+    }
+    .environmentObject(ThemeManager())
+    .applyAppColors()
+    .preferredColorScheme(.dark)
+}

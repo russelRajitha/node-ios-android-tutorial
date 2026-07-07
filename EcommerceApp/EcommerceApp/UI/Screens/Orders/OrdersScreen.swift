@@ -102,3 +102,20 @@ private struct OrderRow: View {
         return String(format: "%.2f", value)
     }
 }
+
+// MARK: - Preview
+
+#Preview("OrdersScreen") {
+    NavigationStack {
+        OrdersScreen()
+    }
+    .applyAppColors()
+}
+
+#Preview("OrdersScreen – Dark") {
+    NavigationStack {
+        OrdersScreen()
+    }
+    .applyAppColors()
+    .preferredColorScheme(.dark)
+}

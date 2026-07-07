@@ -308,3 +308,4 @@ EcommerceApp/
 - **Part 3** — [Navigation, Tab Bar & Typed Routes](https://medium.com/@russelrajitha/building-a-production-ios-app-with-swiftui-part-3-navigation-tab-bar-typed-routes-26aa8cec524b)
 - **Part 4** — [Network Layer, Alamofire, Sessions & Auth](https://medium.com/@russelrajitha/building-a-production-ios-app-with-swiftui-part-4-network-layer-alamofire-sessions-auth-4d045cafa6bc)
 - **Part 5** — [Authentication, Login & Session Management](https://medium.com/@russelrajitha/building-a-production-ios-app-with-swiftui-part-5-authentication-login-session-management-7ceb1360b970)
+- **Part 6** — [Home Screen & Product Listing](https://medium.com/@russelrajitha/building-a-production-ios-app-with-swiftui-part-6-home-screen-product-listing-942a0fe43573)

@@ -132,3 +132,20 @@ private struct OrderItemRow: View {
         return String(format: "%.2f", value)
     }
 }
+
+// MARK: - Preview
+
+#Preview("OrderDetailScreen") {
+    NavigationStack {
+        OrderDetailScreen(orderId: "a1b2c3d4-e5f6-7890-abcd-ef1234567890")
+    }
+    .applyAppColors()
+}
+
+#Preview("OrderDetailScreen – Dark") {
+    NavigationStack {
+        OrderDetailScreen(orderId: "a1b2c3d4-e5f6-7890-abcd-ef1234567890")
+    }
+    .applyAppColors()
+    .preferredColorScheme(.dark)
+}

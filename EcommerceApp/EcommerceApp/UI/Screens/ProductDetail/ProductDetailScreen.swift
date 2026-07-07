@@ -35,9 +35,7 @@ struct ProductDetailScreen: View {
     }
 
     private func sliderImages(for product: ProductDetail) -> [String] {
-        print("product",product)
         let gallery = product.images.map { $0.image }
-        print("gallery",gallery)
         if !gallery.isEmpty { return gallery }
         if let fallback = product.image { return [fallback] }
         return []

@@ -108,3 +108,20 @@ private struct NotificationRow: View {
         return display.localizedString(for: date, relativeTo: Date())
     }
 }
+
+// MARK: - Preview
+
+#Preview("NotificationsScreen") {
+    NavigationStack {
+        NotificationsScreen()
+    }
+    .applyAppColors()
+}
+
+#Preview("NotificationsScreen – Dark") {
+    NavigationStack {
+        NotificationsScreen()
+    }
+    .applyAppColors()
+    .preferredColorScheme(.dark)
+}

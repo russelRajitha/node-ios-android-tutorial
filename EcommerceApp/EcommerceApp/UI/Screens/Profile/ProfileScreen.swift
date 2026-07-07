@@ -80,3 +80,20 @@ private struct ProfileRow: View {
         }
     }
 }
+
+// MARK: - Preview
+
+#Preview("ProfileScreen") {
+    NavigationStack {
+        ProfileScreen()
+    }
+    .applyAppColors()
+}
+
+#Preview("ProfileScreen – Dark") {
+    NavigationStack {
+        ProfileScreen()
+    }
+    .applyAppColors()
+    .preferredColorScheme(.dark)
+}

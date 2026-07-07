@@ -109,3 +109,18 @@ private struct CartRow: View {
         .padding(.vertical, 4)
     }
 }
+
+#Preview("CartScreen") {
+    NavigationStack {
+        CartScreen()
+    }
+    .applyAppColors()
+}
+
+#Preview("CartScreen – Dark") {
+    NavigationStack {
+        CartScreen()
+    }
+    .applyAppColors()
+    .preferredColorScheme(.dark)
+}
